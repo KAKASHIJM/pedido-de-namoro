@@ -26,6 +26,30 @@ button{max-width:100%;min-width:88px;min-height:48px;font-size:clamp(13px,3vw,15
 @media(max-height:360px){body{align-items:flex-start}.card{margin-block:0}.signature{display:none}}
 
 .summary{list-style:none;padding:0;margin:0;width:100%;text-align:left;display:grid;gap:10px}.summary[hidden]{display:none}.summary li{display:flex;justify-content:space-between;gap:16px;background:#fff7;padding:12px 14px;border-radius:12px;font-size:14px;line-height:1.4}.summary strong{color:#9a2450;white-space:nowrap}
+
+/* Mobile flow stays scrollable even when the answer summary is long. */
+html{width:100%;overflow-x:clip}
+body{width:100%;align-items:flex-start}
+.card{margin-block:auto;max-width:100%;box-sizing:border-box}
+.summary{min-width:0}.summary li{min-width:0}.summary li span{min-width:0;overflow-wrap:anywhere}
+@media(max-width:600px){
+ body{padding:16px;padding-top:max(16px,env(safe-area-inset-top));padding-bottom:max(20px,env(safe-area-inset-bottom));padding-left:max(12px,env(safe-area-inset-left));padding-right:max(12px,env(safe-area-inset-right))}
+ .card{width:100%;flex-basis:100%;padding:24px 18px;border-radius:28px;row-gap:14px}
+ .bear{width:clamp(100px,30vw,140px)}
+ h1{font-size:clamp(19px,5.4vw,24px);line-height:1.4}
+ .note{font-size:14px;line-height:1.6;min-height:44px}
+ .choices{gap:12px;align-items:start}
+ button{min-height:50px;min-width:100px;font-size:15px;padding:13px 22px}
+ .summary{gap:8px}.summary li{padding:12px;font-size:13px;gap:12px}
+ .accepted:has(.summary:not([hidden])){margin-block:0}
+}
+@media(max-width:360px){.card{padding:20px 14px}.choices{gap:10px}button{min-width:90px}.summary li{padding:10px;font-size:12px}}
+@media(max-height:500px) and (min-width:480px){
+ body{padding-top:max(12px,env(safe-area-inset-top));padding-bottom:max(12px,env(safe-area-inset-bottom))}
+ .card{flex-basis:650px;padding:16px 20px;row-gap:8px}
+ .card:has(.summary:not([hidden])){grid-template-columns:minmax(0,1fr);grid-template-areas:"bear" "question" "message" "choices" "restart" "signature";margin-block:0}
+ .card:has(.summary:not([hidden])) .bear{width:90px}
+}
 </style></head><body>
 <noscript><p style="position:fixed;inset:15px 15px auto;z-index:20;background:white;padding:16px;border-radius:12px">Abra este arquivo em um navegador com JavaScript ativado para os botões funcionarem.</p></noscript>
 <div id="hearts" aria-hidden="true"></div>
